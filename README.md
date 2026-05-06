@@ -1,0 +1,1 @@
+# E--Waste-Image-Classification-using-EfficientnetV2B0-Model
