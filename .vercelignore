@@ -13,4 +13,4 @@ catboost_info/
 frontend/
 explainability/
 agents/
-*.pkl
+
