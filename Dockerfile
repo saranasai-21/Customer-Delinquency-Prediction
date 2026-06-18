@@ -22,5 +22,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . /app/
 
-# Set the command to run the model training script and display the metrics
-CMD ["python", "backend/train_model.py"]
+# Set the command to run the model prediction script
+CMD ["python", "backend/predict.py"]

@@ -1,13 +1,5 @@
 pandas
 numpy
 scikit-learn
-xgboost
-catboost
-shap
-fastapi
-uvicorn
-streamlit
 joblib
 openpyxl
-langgraph
-google-generativeai

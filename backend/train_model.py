@@ -12,7 +12,7 @@ PARENT_DIR = os.path.dirname(BASE_DIR)
 if PARENT_DIR not in sys.path:
     sys.path.append(PARENT_DIR)
 
-from backend.pipeline.feature_store import FeatureStorePipeline
+from backend.feature_pipeline import FeatureStorePipeline
 
 from sklearn.model_selection import train_test_split
 
@@ -45,7 +45,7 @@ df = pd.read_excel(
 )
 
 feature_pipeline = FeatureStorePipeline()
-df = feature_pipeline.process(df, is_training=True)
+df = feature_pipeline.process(df)
 
 TARGET = "Delinquent_Account"
 
