@@ -1,0 +1,12 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.vercel/
+.vercelignore
+catboost_info/
+predictions.db
+database/*.db

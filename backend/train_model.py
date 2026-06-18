@@ -4,7 +4,15 @@ import os
 import pandas as pd
 import joblib
 
-from preprocessing import preprocess_data
+import sys
+
+# Inject path logic for imports
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PARENT_DIR = os.path.dirname(BASE_DIR)
+if PARENT_DIR not in sys.path:
+    sys.path.append(PARENT_DIR)
+
+from backend.pipeline.feature_store import FeatureStorePipeline
 
 from sklearn.model_selection import train_test_split
 
@@ -36,7 +44,8 @@ df = pd.read_excel(
     os.path.join(BASE_DIR, "..", "data", "Delinquency_prediction_dataset.xlsx")
 )
 
-df = preprocess_data(df)
+feature_pipeline = FeatureStorePipeline()
+df = feature_pipeline.process(df, is_training=True)
 
 TARGET = "Delinquent_Account"
 
@@ -201,10 +210,18 @@ print(
 )
 
 # -----------------------------
-# Save with interactive permission prompt
+# Save with interactive permission prompt (non-interactive fallback for Docker)
 # -----------------------------
 print("\nTraining complete.")
-ans = input("Do you want to save the trained model to disk? (y/n): ")
+if os.environ.get("FORCE_SAVE", "0") == "1":
+    ans = "y"
+else:
+    try:
+        ans = input("Do you want to save the trained model to disk? (y/n): ")
+    except EOFError:
+        print("Non-interactive environment detected. Defaulting to saving the model.")
+        ans = "y"
+
 if ans.strip().lower() in ['y', 'yes']:
     joblib.dump(
         pipeline,
