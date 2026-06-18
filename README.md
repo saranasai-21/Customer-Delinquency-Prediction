@@ -1,6 +1,6 @@
-# Aegis Risk - Enterprise Credit Risk & Delinquency Prediction Platform
+# Customer-Delinquency-Prediction
 
-Aegis Risk is a production-grade, bank-compliant credit risk assessment and default prediction API service. Built with **FastAPI**, **SQLAlchemy/PostgreSQL**, and **LangGraph**, it showcases software engineering excellence through Clean Architecture, SOLID principles, cost-sensitive model thresholds, and robust MLOps observability.
+This is a production-grade, bank-compliant credit risk assessment and default prediction API service. Built with **FastAPI**, **SQLAlchemy/PostgreSQL**, and **LangGraph**, it showcases software engineering excellence through Clean Architecture, SOLID principles, cost-sensitive model thresholds, and robust MLOps observability.
 
 🔗 **Live Production API**: [https://customer-delinquency-prediction.vercel.app](https://customer-delinquency-prediction.vercel.app)  
 🚀 **Live API Health Status**: [https://customer-delinquency-prediction.vercel.app/health](https://customer-delinquency-prediction.vercel.app/health)
