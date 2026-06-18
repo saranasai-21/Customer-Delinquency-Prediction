@@ -21,3 +21,5 @@ htmlcov/
 database/*.db
 predictions.db
 catboost_info/
+
+.vercel

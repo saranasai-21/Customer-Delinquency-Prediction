@@ -1,0 +1,16 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+database/*.db
+predictions.db
+catboost_info/
+frontend/
+explainability/
+agents/
+*.pkl
