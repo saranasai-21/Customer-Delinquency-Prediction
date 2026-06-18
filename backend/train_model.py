@@ -16,13 +16,12 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 from sklearn.ensemble import (
     ExtraTreesClassifier,
+    RandomForestClassifier,
+    HistGradientBoostingClassifier,
     StackingClassifier
 )
 
 from sklearn.linear_model import LogisticRegression
-
-from xgboost import XGBClassifier
-from catboost import CatBoostClassifier
 
 from sklearn.metrics import (
     classification_report,
@@ -44,8 +43,12 @@ TARGET = "Delinquent_Account"
 X = df.drop(
     columns=[
         "Customer_ID",
+        "Account_Tenure",
+        "Credit_Card_Type",
+        "Location",
         TARGET
-    ]
+    ],
+    errors="ignore"
 )
 
 y = df[TARGET]
@@ -121,10 +124,10 @@ preprocessor = ColumnTransformer(
 # -----------------------------
 # Models
 # -----------------------------
-cat_model = CatBoostClassifier(
-    iterations=300,
-    verbose=0,
-    auto_class_weights='Balanced'
+rf_model = RandomForestClassifier(
+    n_estimators=300,
+    class_weight='balanced',
+    random_state=42
 )
 
 extra_model = ExtraTreesClassifier(
@@ -133,18 +136,18 @@ extra_model = ExtraTreesClassifier(
     random_state=42
 )
 
-xgb_model = XGBClassifier(
-    n_estimators=300,
-    eval_metric="logloss",
-    scale_pos_weight=5.25
+hgb_model = HistGradientBoostingClassifier(
+    max_iter=300,
+    class_weight='balanced',
+    random_state=42
 )
 
 stack_model = StackingClassifier(
 
     estimators=[
-        ("cat", cat_model),
+        ("rf", rf_model),
         ("extra", extra_model),
-        ("xgb", xgb_model)
+        ("hgb", hgb_model)
     ],
 
     final_estimator=LogisticRegression(class_weight='balanced')
