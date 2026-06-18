@@ -1,6 +1,8 @@
 # Aegis Risk - Enterprise Customer Delinquency Prediction Platform
 
-Aegis Risk is a bank-grade, end-to-end credit risk assessment and default prediction system built using Clean Architecture, SOLID design principles, and modern MLOps pipelines. 
+![Aegis Tech Banner](aegis_banner.png)
+
+Aegis Risk is a bank-grade, end-to-end credit risk assessment and default prediction REST API built using Clean Architecture, SOLID design principles, and modern MLOps pipelines. 
 
 ---
 
@@ -10,14 +12,13 @@ The platform is designed around strict dependency boundaries separating raw infr
 
 ```mermaid
 graph TD
-    A[Next.js 14 Dashboard] -->|REST API| B[FastAPI Gateway]
-    B -->|Dependency Injection| C[Prediction & Agent Services]
-    C -->|Orchestration| D[LangGraph Conversational Agent]
-    C -->|Feature Preprocessing| E[Feature Store Pipeline]
-    C -->|Inference| F[Calibrated Stacking Ensemble]
-    C -->|Generative AI| G[Gemini Action Engine]
-    C -->|Repository Pattern| H[SQLAlchemy PostgreSQL]
-    B -->|ASGI mount| I[Prometheus Metrics /metrics]
+    A[FastAPI Gateway / Swagger UI] -->|Dependency Injection| B[Prediction & Agent Services]
+    B -->|Orchestration| C[LangGraph Conversational Agent]
+    B -->|Feature Preprocessing| D[Feature Store Pipeline]
+    B -->|Inference| E[Calibrated Stacking Ensemble]
+    B -->|Generative AI| F[Gemini Action Engine]
+    B -->|Repository Pattern| G[SQLAlchemy PostgreSQL]
+    A -->|ASGI mount| H[Prometheus Metrics /metrics]
 ```
 
 ### Key Modules:
