@@ -19,7 +19,12 @@ from backend.services.recommendation_service import RecommendationService
 from backend.services.agent_service import DelinquencyAgent
 
 # Fetch database URL from environment (default to a local SQLite database for ease of testing)
-DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./predictions.db")
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    if "VERCEL" in os.environ:
+        DATABASE_URL = "sqlite:////tmp/predictions.db"
+    else:
+        DATABASE_URL = "sqlite:///./predictions.db"
 session_factory = get_db_session_factory(DATABASE_URL)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/token")

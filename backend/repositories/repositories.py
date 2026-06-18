@@ -1,6 +1,6 @@
 # backend/repositories/repositories.py
 
-from typing import List, Optional, Type, TypeVar, Generic
+from typing import Any, List, Optional, Type, TypeVar, Generic
 from sqlalchemy.orm import Session
 from backend.database.models import (
     Base,

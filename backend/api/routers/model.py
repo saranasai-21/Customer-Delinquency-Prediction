@@ -50,7 +50,7 @@ def get_shap_explanation(
     _ = Depends(require_role(["admin", "analyst"]))
 ):
     """Generates local SHAP explanation values for a specific customer risk score."""
-    from backend.services.agent_service import SHAPExplainManager
+    from backend.pipeline.explainers import SHAPExplainManager
     
     # Preprocess instance
     cust_data = customer_data.copy()

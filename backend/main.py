@@ -18,7 +18,12 @@ from backend.api.routers import predict, model, agents, auth
 
 # Define database engines on startup
 from backend.database.models import Base, get_db_session_factory
-DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./predictions.db")
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    if "VERCEL" in os.environ:
+        DATABASE_URL = "sqlite:////tmp/predictions.db"
+    else:
+        DATABASE_URL = "sqlite:///./predictions.db"
 session_factory = get_db_session_factory(DATABASE_URL)
 
 app = FastAPI(
