@@ -5,5 +5,4 @@ fastapi
 joblib
 openpyxl
 google-generativeai
-pyarrow
 
